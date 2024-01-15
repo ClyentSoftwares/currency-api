@@ -61,7 +61,8 @@ func (s *Service) updateRates() {
 }
 
 func round(num float64) float64 {
-	return math.Round(num*100) / 100
+	pow := math.Pow(10, 5)
+	return math.Round(num*pow) / pow
 }
 
 func (s *Service) Convert(amount float64, from, to string) (float64, error) {
