@@ -24,7 +24,7 @@ A self-hosted REST API to convert currencies and retrieve current exchange rates
 
 3. **Get All Rates for a Base Currency**
    - **Endpoint:** `GET /rates?base=GBP`
-   - **Response:** `{"base": "GBP", "rates": {"USD": 1.27}}`
+   - **Response:** `{"rates": {"USD": 1.27}}`
    - **Description:** Provides exchange rates for all available currencies against a base currency. The base is optional and defaults to USD.
 
 ## Installation

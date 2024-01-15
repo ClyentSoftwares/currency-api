@@ -15,7 +15,7 @@ func (s *Server) routes() {
 func (s *Server) handleConvert(w http.ResponseWriter, r *http.Request) {
 	amount, err := strconv.ParseFloat(r.URL.Query().Get("amount"), 64)
 	if err != nil {
-		http.Error(w, "Invalid amount", http.StatusBadRequest)
+		sendError(w, "Invalid amount", http.StatusBadRequest)
 		return
 	}
 	from := r.URL.Query().Get("from")
@@ -23,11 +23,11 @@ func (s *Server) handleConvert(w http.ResponseWriter, r *http.Request) {
 
 	convertedAmount, err := s.currencyService.Convert(amount, from, to)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		sendError(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]interface{}{"amount": convertedAmount})
+	sendJSON(w, map[string]interface{}{"amount": convertedAmount})
 }
 
 func (s *Server) handleRate(w http.ResponseWriter, r *http.Request) {
@@ -36,11 +36,11 @@ func (s *Server) handleRate(w http.ResponseWriter, r *http.Request) {
 
 	rate, err := s.currencyService.GetRate(from, to)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		sendError(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]interface{}{"rate": rate})
+	sendJSON(w, map[string]interface{}{"rate": rate})
 }
 
 func (s *Server) handleRates(w http.ResponseWriter, r *http.Request) {
@@ -51,9 +51,20 @@ func (s *Server) handleRates(w http.ResponseWriter, r *http.Request) {
 
 	rates, err := s.currencyService.GetAllRates(base)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		sendError(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]interface{}{"base": base, "rates": rates})
+	sendJSON(w, map[string]interface{}{"rates": rates})
+}
+
+func sendJSON(w http.ResponseWriter, payload interface{}) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(payload)
+}
+
+func sendError(w http.ResponseWriter, message string, statusCode int) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(statusCode)
+	json.NewEncoder(w).Encode(map[string]interface{}{"error": message})
 }
