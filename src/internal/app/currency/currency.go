@@ -9,7 +9,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/ClyentSoftwares/currency-api/src/internal/pkg/cache"
+	"github.com/clyentsoftwares/currency-api/src/internal/pkg/cache"
 )
 
 type Service struct {

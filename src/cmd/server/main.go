@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ClyentSoftwares/currency-api/src/internal/app/server"
+	"github.com/clyentsoftwares/currency-api/src/internal/app/server"
 	"github.com/joho/godotenv"
 )
 

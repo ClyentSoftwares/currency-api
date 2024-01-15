@@ -1,4 +1,4 @@
-module github.com/ClyentSoftwares/currency-api
+module github.com/clyentsoftwares/currency-api
 
 go 1.21.3
 

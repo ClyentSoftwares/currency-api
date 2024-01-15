@@ -29,7 +29,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ghcr.io/ClyentSoftwares/currency-api:latest
+          tags: ghcr.io/clyentsoftwares/currency-api:latest
           platforms: linux/amd64,linux/arm64
 
       - name: Image digest

@@ -32,7 +32,7 @@ A self-hosted REST API to convert currencies and retrieve current exchange rates
 The API is available as a Docker image on GitHub Container Registry. To run the API, you can use the following command:
 
 ```bash
-docker run -p 8080:8080 -e SERVER_PORT=8080 -e OPEN_EXCHANGE_RATES_APP_ID=<your_app_id> ghcr.io/ClyentSoftwares/currency-api:latest
+docker run -p 8080:8080 -e SERVER_PORT=8080 -e OPEN_EXCHANGE_RATES_APP_ID=<your_app_id> ghcr.io/clyentsoftwares/currency-api:latest
 ```
 
 ## Configuration

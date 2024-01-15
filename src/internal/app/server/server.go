@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	"github.com/ClyentSoftwares/currency-api/src/internal/app/currency"
+	"github.com/clyentsoftwares/currency-api/src/internal/app/currency"
 	"github.com/gorilla/mux"
 )
 
