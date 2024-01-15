@@ -11,8 +11,8 @@ import (
 
 func main() {
 	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	if err != nil && !os.IsNotExist(err) {
+		log.Fatalln("Error loading .env")
 	}
 
 	port := os.Getenv("SERVER_PORT")
